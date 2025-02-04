@@ -5,14 +5,15 @@
         &nbsp;<a [routerLink]="['/admin/categories/Add']" class="btn btn-primary">Add Category</a>
        
     </div>
-  
-    <ng-container *ngIf="categories$ | async as categories">
+    
+    <ng-container *ngIf="categories$ | async as categories;else notfound">
     <table class="table table-bordered mt-3">
     <thead>
         <tr>
             <th>Id</th>
             <th>Name</th>
             <th>Url handle</th>
+            <th>Operations</th>
         </tr>
         
     </thead>
@@ -21,10 +22,17 @@
             <td>{{category.id}}</td>
             <td>{{category.name}}</td>
             <td>{{category.urlHandle}}</td>
+            <td><a [routerLink]="['/admin/categories/',category.id]" class="btn btn-light">Edit</a>
+            
 
         </tr>
     </tbody>
 
 </table>
 </ng-container>
+<ng-template #notfound>
+    <div class="alert alert-warning" role="alert">
+        There is an issue with the API or Categories Not Found
+      </div>
+</ng-template>
 </div>

@@ -16,13 +16,18 @@ export class CategoryListComponent implements OnInit {
 
   ngOnInit(): void {
     this.categories$=this.categoryService.getAllCategories();
-    console.log(this.categories$);
-    // .subscribe({
-    //   next :(Response)=>{
-    //     this.categories=Response;
-         
-    //   }
-    // })
+    this.categories$.subscribe({
+      next: (response) => {
+        console.log('API Response:', response);  // Log the response data
+        // Here you can assign the response to a local variable or do any other logic
+        // this.categories = response;
+      },
+      error: (err) => {
+        console.error('Error fetching categories:', err);  // Log any error
+      }
+    });
+    //console.log(this.categories$);
+   
   }
 
 }

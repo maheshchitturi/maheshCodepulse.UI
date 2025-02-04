@@ -1,21 +1,34 @@
 <div class="container">
 
 
-<ng-container *ngIf="attendance$ | async as attendance">
+<ng-container *ngIf="Object.keys(attendanceList).length">
     <table class="table table-bordered mt-3">
     <thead>
         <tr>
             
             <th>Emp Id</th>
             <th>Punch_time</th>
+            <th>Total workHours</th>
+            <th>Break TIme</th>
+            <th> Actual Work Hours</th>
         </tr>
         
     </thead>
     <tbody>
-        <tr *ngFor="let atten of attendance">
+        <tr *ngFor="let atten of Object.keys(attendanceList)">
            
-            <td>{{atten.accessId}}</td>
-            <td>{{atten.punchTime}}</td>
+            <td>{{atten}}</td>
+            <td><ul>
+                <li *ngFor="let time of attendanceList[atten].punch_time">{{ time }}</li>
+              </ul>
+            </td>
+            <!--<td>{{attendanceList[atten].punch_time}}</td>-->
+            <td>{{attendanceList[atten].totalworkhours}}</td>
+            <td>{{attendanceList[atten].break_duration}}</td>
+            <td>{{attendanceList[atten].Actual_workhours}}</td>
+            <!--<td>{{attendanceList[atten].punch_time}}</td>-->
+           
+            
 
         </tr>
     </tbody>
