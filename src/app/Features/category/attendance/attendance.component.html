@@ -1,0 +1,25 @@
+<div class="container">
+
+
+<ng-container *ngIf="attendance$ | async as attendance">
+    <table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            
+            <th>Emp Id</th>
+            <th>Punch_time</th>
+        </tr>
+        
+    </thead>
+    <tbody>
+        <tr *ngFor="let atten of attendance">
+           
+            <td>{{atten.accessId}}</td>
+            <td>{{atten.punchTime}}</td>
+
+        </tr>
+    </tbody>
+
+</table>
+</ng-container>
+</div>
