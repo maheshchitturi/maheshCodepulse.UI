@@ -110,16 +110,22 @@
           />
           <label class="form-check-label" for="isVisible"> Is Visible? </label>
         </div>
-        <!-- <div class="mt-3">
-                <label for="Categories" class="form-label">Categories</label>
-                <ng-container *ngIf="categories$ |async as categories">
-                    <select name="categories" [(ngModel)]="model.categories" id="categories" class="form-control" multiple>
-                        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
-                    </select>
-                </ng-container>
-                
-
-            </div> -->
+        <div class="mt-3">
+          <label for="Categories" class="form-label">Categories</label>
+          <ng-container *ngIf="categories$ | async as categories">
+            <select
+              name="categories"
+              [(ngModel)]="selectedCategories"
+              id="categories"
+              class="form-control"
+              multiple
+            >
+              <option *ngFor="let category of categories" [value]="category.id">
+                {{ category.name }}
+              </option>
+            </select>
+          </ng-container>
+        </div>
         <div class="mt-3">
           <button type="submit" class="btn btn-primary">Update</button>
         </div>
