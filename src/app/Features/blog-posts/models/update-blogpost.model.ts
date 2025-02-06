@@ -10,6 +10,6 @@ export interface UpdateBlogPost{
     publishedDate:Date;
     author:string;
     isVisible:boolean;
-    categories:Category[];
+    categories:string[];
 
 }

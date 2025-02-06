@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { BlogpostService } from '../services/blogpost.service';
 import { blogpost } from '../models/blog-post.model';
@@ -19,14 +19,22 @@ export class EditBlogpostComponent implements OnInit,OnDestroy{
   model?:blogpost;
   categories$?: Observable<Category[]>;
   routeSubscription? :Subscription;
-  selectedCategories?:string[];
+  blogpostSubscription? :Subscription;
+  selectedCategories?: string [];
+  updateSubscription? :Subscription;
+  DeleteSubscription?:Subscription;
  
-  constructor(private BlogpostService:BlogpostService,private route:ActivatedRoute,private categoryService:CategoryService) {
+  constructor(private BlogpostService:BlogpostService,private route:ActivatedRoute,private categoryService:CategoryService,
+    private router:Router
+  ) {
    
     
   }
   ngOnDestroy(): void {
     this.routeSubscription?.unsubscribe();
+    this.updateSubscription?.unsubscribe();
+    this.blogpostSubscription?.unsubscribe();
+    this.DeleteSubscription?.unsubscribe();
   }
   
   ngOnInit(): void {
@@ -36,7 +44,7 @@ export class EditBlogpostComponent implements OnInit,OnDestroy{
         this.id=params.get('id');
       //get blogpost by id
       if(this.id){
-        this.BlogpostService.getBlogPostByID(this.id)
+        this.blogpostSubscription=this.BlogpostService.getBlogPostByID(this.id)
         .subscribe({
           next:(Response)=>{
             console.log(Response)
@@ -61,11 +69,28 @@ export class EditBlogpostComponent implements OnInit,OnDestroy{
        featuredImageUrl:this.model.featuredImageUrl,
        publishedDate:this.model.publishedDate,
        title:this.model.title,
-       categories:this.selectedCategories ?? []
+       categories :this.selectedCategories ?? []
 
 
-    };
-    
+      };
+      this.updateSubscription=this.BlogpostService.UpdateBlogPostById(this.id,UpdateBlogPost)
+        .subscribe({
+          next:(Response)=>{
+            this.router.navigateByUrl('/admin/blog-posts');
+          }
+    })
+
+    }
   }
-
+  onDelete():void{
+    if(this.id){
+      this.DeleteSubscription=this.BlogpostService.DeleteBlogPostById(this.id)
+      .subscribe({
+        next:(Response)=>{
+          this.router.navigateByUrl('/admin/blog-posts');
+          console.log('deleted Successfully');
+        }
+      })
+    }
+  }
 }
