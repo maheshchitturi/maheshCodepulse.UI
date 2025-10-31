@@ -24,6 +24,9 @@ export class BlogpostService {
   getBlogPostByID(id:string):Observable<blogpost>{
     return this.http.get<blogpost>(`${environment.apibaseurl}/api/Blogposts/${id}`);
   }
+  getBlogPostByUrlHandle(urlhandle:string):Observable<blogpost>{
+    return this.http.get<blogpost>(`${environment.apibaseurl}/api/Blogposts/${urlhandle}`);
+  }
   UpdateBlogPostById(id:string,UpdatedBlogPost:UpdateBlogPost):Observable<blogpost>{
     return this.http.put<blogpost>(`${environment.apibaseurl}/api/Blogposts/${id}`,UpdatedBlogPost)
   }
