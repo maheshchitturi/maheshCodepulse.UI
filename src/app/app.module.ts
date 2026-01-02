@@ -18,6 +18,7 @@ import { EditBlogpostComponent } from './Features/blog-posts/edit-blogpost/edit-
 import { ImageSelectorComponent } from './Shared/components/image-selector/image-selector.component';
 import { HomeComponent } from './Features/public/home/home.component';
 import { BlogDetailsComponent } from './Features/public/blog-details/blog-details.component';
+import { LoginComponent } from './Features/auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { BlogDetailsComponent } from './Features/public/blog-details/blog-detail
     EditBlogpostComponent,
     ImageSelectorComponent,
     HomeComponent,
-    BlogDetailsComponent
+    BlogDetailsComponent,
+    LoginComponent
   
   ],
   imports: [

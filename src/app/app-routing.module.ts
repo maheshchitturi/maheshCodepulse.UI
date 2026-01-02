@@ -9,11 +9,17 @@ import { AddBlogpostComponent } from './Features/blog-posts/add-blogpost/add-blo
 import { EditBlogpostComponent } from './Features/blog-posts/edit-blogpost/edit-blogpost.component';
 import { HomeComponent } from './Features/public/home/home.component';
 import { BlogDetailsComponent } from './Features/public/blog-details/blog-details.component';
+import { LoginComponent } from './Features/auth/login/login.component';
 
 const routes: Routes = [
   {
     path:'',
     component:HomeComponent
+
+  },
+  {
+    path:'login',
+    component:LoginComponent
 
   },
   {
