@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
+import { CookieService } from 'ngx-cookie-service';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './Core/Components/navbar/navbar.component';
 import { CategoryListComponent } from './Features/category/category-list/category-list.component';
@@ -19,6 +20,8 @@ import { ImageSelectorComponent } from './Shared/components/image-selector/image
 import { HomeComponent } from './Features/public/home/home.component';
 import { BlogDetailsComponent } from './Features/public/blog-details/blog-details.component';
 import { LoginComponent } from './Features/auth/login/login.component';
+
+
 
 @NgModule({
   declarations: [
@@ -35,16 +38,16 @@ import { LoginComponent } from './Features/auth/login/login.component';
     HomeComponent,
     BlogDetailsComponent,
     LoginComponent
-  
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     MarkdownModule.forRoot()
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

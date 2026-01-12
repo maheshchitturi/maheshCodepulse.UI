@@ -23,7 +23,7 @@ export class LoginComponent {
       next:(response)=>{
         //console.log(response);
         //set auth cookie 
-        this.cookieService.set('auth_token',response.token);
+        this.cookieService.set('Authorization',`Bearer ${response.token}`,undefined,'/',undefined,true,'Strict');
         console.log('Login successful, token stored in cookies.');
       },
       error:(error)=>{

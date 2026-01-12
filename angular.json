@@ -71,7 +71,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "codepulse:build:production"
+              "browserTargete:build:production"
             },
             "development": {
               "browserTarget": "codepulse:build:development"
